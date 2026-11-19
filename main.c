@@ -49,7 +49,7 @@ void ochist_matr(int** G, int n) {
 }
 
 void vivod_matr(int** G, int n) {
-    printf("\nМатрица смежности (%dx%d)\n     ", n, n);
+    printf("\nГЊГ ГІГ°ГЁГ¶Г  Г±Г¬ГҐГ¦Г­Г®Г±ГІГЁ (%dx%d)\n     ", n, n);
     for (int j = 0; j < n; j++) {
         printf("v%-3d", j);
     }
@@ -101,12 +101,12 @@ void ochist_spiski(struct UzelSpiska** spiski, int n) {
 }
 
 void vivod_spiskov(struct UzelSpiska** spiski, int n) {
-    printf("\nСписки смежности\n");
+    printf("\nГ‘ГЇГЁГ±ГЄГЁ Г±Г¬ГҐГ¦Г­Г®Г±ГІГЁ\n");
     for (int i = 0; i < n; i++) {
         printf("v%d: ", i);
         struct UzelSpiska* tek = spiski[i];
         if (tek == NULL) {
-            printf("[нет смежных вершин]");
+            printf("[Г­ГҐГІ Г±Г¬ГҐГ¦Г­Г»Гµ ГўГҐГ°ГёГЁГ­]");
         }
         while (tek != NULL) {
             printf("-> v%d ", tek->versh);
@@ -194,12 +194,12 @@ void dfs_spis(int start, int n, struct UzelSpiska** spiski, int* dist) {
 }
 
 void vivod_rasst(int start, int n, int* dist, const char* title) {
-    printf("\nВектор расстояний (%s) от вершины v%d\n", title, start);
+    printf("\nГ‚ГҐГЄГІГ®Г° Г°Г Г±Г±ГІГ®ГїГ­ГЁГ© (%s) Г®ГІ ГўГҐГ°ГёГЁГ­Г» v%d\n", title, start);
     for (int i = 0; i < n; i++) {
         if (dist[i] == -1) {
-            printf("  До вершины v%-2d: недостижима (нет пути)\n", i);
+            printf("  Г„Г® ГўГҐГ°ГёГЁГ­Г» v%-2d: Г­ГҐГ¤Г®Г±ГІГЁГ¦ГЁГ¬Г  (Г­ГҐГІ ГЇГіГІГЁ)\n", i);
         } else {
-            printf("  До вершины v%-2d: расстояние = %d\n", i, dist[i]);
+            printf("  Г„Г® ГўГҐГ°ГёГЁГ­Г» v%-2d: Г°Г Г±Г±ГІГ®ГїГ­ГЁГҐ = %d\n", i, dist[i]);
         }
     }
 }
@@ -209,14 +209,14 @@ double vremya() {
 }
 
 void zapusk_benchmark() {
-    printf("\nЗАМЕР ВРЕМЕНИ РАБОТЫ (Задание 2*)\n\n");
+    printf("\nГ‡ГЂГЊГ…Гђ Г‚ГђГ…ГЊГ…ГЌГ€ ГђГЂГЃГЋГ’Г› (Г‡Г Г¤Г Г­ГЁГҐ 2*)\n\n");
 
     int razmeri[] = { 100, 300, 600, 1000 };
     int kolichestvo = sizeof(razmeri) / sizeof(razmeri[0]);
     int ver = 25;
 
     printf("%-8s | %-16s | %-16s | %-16s | %-16s\n", 
-           "Вершин", "BFS (Матрица)", "BFS (Списки)", "DFS (Матрица)", "DFS (Списки)");
+           "Г‚ГҐГ°ГёГЁГ­", "BFS (ГЊГ ГІГ°ГЁГ¶Г )", "BFS (Г‘ГЇГЁГ±ГЄГЁ)", "DFS (ГЊГ ГІГ°ГЁГ¶Г )", "DFS (Г‘ГЇГЁГ±ГЄГЁ)");
 
     for (int t = 0; t < kolichestvo; t++) {
         int n = razmeri[t];
@@ -232,7 +232,7 @@ void zapusk_benchmark() {
         start_t = clock(); dfs_matr(0, n, G, dist);             t_dfs_m = (double)(clock() - start_t) / CLOCKS_PER_SEC;
         start_t = clock(); dfs_spis(0, n, spiski, dist);        t_dfs_l = (double)(clock() - start_t) / CLOCKS_PER_SEC;
 
-        printf("%-8d | %14.6f с | %14.6f с | %14.6f с | %14.6f с\n", 
+        printf("%-8d | %14.6f Г± | %14.6f Г± | %14.6f Г± | %14.6f Г±\n", 
                n, t_bfs_m, t_bfs_l, t_dfs_m, t_dfs_l);
 
         free(dist);
@@ -246,10 +246,10 @@ int main() {
     srand((unsigned int)time(NULL));
 
     while (1) {
-        printf("1. Случайный граф\n");
-        printf("2. Сравнение времени BFS и DFS (Задание 2*)\n");
-        printf("0. Выход\n");
-        printf("Выбор: ");
+        printf("1. Г‘Г«ГіГ·Г Г©Г­Г»Г© ГЈГ°Г Гґ\n");
+        printf("2. Г‘Г°Г ГўГ­ГҐГ­ГЁГҐ ГўГ°ГҐГ¬ГҐГ­ГЁ BFS ГЁ DFS (Г‡Г Г¤Г Г­ГЁГҐ 2*)\n");
+        printf("0. Г‚Г»ГµГ®Г¤\n");
+        printf("Г‚Г»ГЎГ®Г°: ");
 
         int choice;
         if (scanf("%d", &choice) != 1) {
@@ -260,17 +260,17 @@ int main() {
 
         if (choice == 1) {
             int n, ver;
-            printf("\nВведите количество вершин графа: ");
+            printf("\nГ‚ГўГҐГ¤ГЁГІГҐ ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® ГўГҐГ°ГёГЁГ­ ГЈГ°Г ГґГ : ");
             if (scanf("%d", &n) != 1 || n <= 0) {
                 while (getchar() != '\n');
-                printf("Некорректный ввод!\n");
+                printf("ГЌГҐГЄГ®Г°Г°ГҐГЄГІГ­Г»Г© ГўГўГ®Г¤!\n");
                 continue;
             }
 
-            printf("Введите вероятность наличия ребра (0..100): ");
+            printf("Г‚ГўГҐГ¤ГЁГІГҐ ГўГҐГ°Г®ГїГІГ­Г®Г±ГІГј Г­Г Г«ГЁГ·ГЁГї Г°ГҐГЎГ°Г  (0..100): ");
             if (scanf("%d", &ver) != 1 || ver < 0 || ver > 100) {
                 while (getchar() != '\n');
-                printf("Некорректная вероятность!\n");
+                printf("ГЌГҐГЄГ®Г°Г°ГҐГЄГІГ­Г Гї ГўГҐГ°Г®ГїГІГ­Г®Г±ГІГј!\n");
                 continue;
             }
 
@@ -281,21 +281,21 @@ int main() {
                 vivod_matr(G, n);
                 vivod_spiskov(spiski, n);
             } else {
-                printf("\nГраф слишком большой (%d вершин), подробный вывод матриц пропущен.\n", n);
+                printf("\nГѓГ°Г Гґ Г±Г«ГЁГёГЄГ®Г¬ ГЎГ®Г«ГјГёГ®Г© (%d ГўГҐГ°ГёГЁГ­), ГЇГ®Г¤Г°Г®ГЎГ­Г»Г© ГўГ»ГўГ®Г¤ Г¬Г ГІГ°ГЁГ¶ ГЇГ°Г®ГЇГіГ№ГҐГ­.\n", n);
             }
 
             int start;
             do {
-                printf("\nВведите начальную вершину (0..%d): ", n - 1);
+                printf("\nГ‚ГўГҐГ¤ГЁГІГҐ Г­Г Г·Г Г«ГјГ­ГіГѕ ГўГҐГ°ГёГЁГ­Гі (0..%d): ", n - 1);
                 if (scanf("%d", &start) != 1) {
                     while (getchar() != '\n');
                     start = -1;
                 }
                 if (start < 0 || start >= n) {
-                    printf("Такой вершины нет\n");
+                    printf("Г’Г ГЄГ®Г© ГўГҐГ°ГёГЁГ­Г» Г­ГҐГІ\n");
                 }
 				else if (spiski[start] == NULL) {
-					printf("Вершина изолирована! Выберите другую\n");
+					printf("Г‚ГҐГ°ГёГЁГ­Г  ГЁГ§Г®Г«ГЁГ°Г®ГўГ Г­Г ! Г‚Г»ГЎГҐГ°ГЁГІГҐ Г¤Г°ГіГЈГіГѕ\n");
 					start = -1;
 				}
 
@@ -314,17 +314,17 @@ int main() {
             t1 = clock(); dfs_spis(start, n, spiski, dist_dfs_l);        t2 = clock(); double time_dfs_l = (double)(t2 - t1) / CLOCKS_PER_SEC;
 
             if (n <= 30) {
-                vivod_rasst(start, n, dist_bfs_m, "BFS, Матрица");
-                vivod_rasst(start, n, dist_bfs_l, "BFS, Списки");
-                vivod_rasst(start, n, dist_dfs_m, "DFS, Матрица");
-                vivod_rasst(start, n, dist_dfs_l, "DFS, Списки");
+                vivod_rasst(start, n, dist_bfs_m, "BFS, ГЊГ ГІГ°ГЁГ¶Г ");
+                vivod_rasst(start, n, dist_bfs_l, "BFS, Г‘ГЇГЁГ±ГЄГЁ");
+                vivod_rasst(start, n, dist_dfs_m, "DFS, ГЊГ ГІГ°ГЁГ¶Г ");
+                vivod_rasst(start, n, dist_dfs_l, "DFS, Г‘ГЇГЁГ±ГЄГЁ");
             }
 
-            printf("\nВремя выполнения от v%d\n", start);
-            printf("BFS (Матрица): %.6f с.\n", time_bfs_m);
-            printf("BFS (Списки):  %.6f с.\n", time_bfs_l);
-            printf("DFS (Матрица): %.6f с.\n", time_dfs_m);
-            printf("DFS (Списки):  %.6f с.\n", time_dfs_l);
+            printf("\nГ‚Г°ГҐГ¬Гї ГўГ»ГЇГ®Г«Г­ГҐГ­ГЁГї Г®ГІ v%d\n", start);
+            printf("BFS (ГЊГ ГІГ°ГЁГ¶Г ): %.6f Г±.\n", time_bfs_m);
+            printf("BFS (Г‘ГЇГЁГ±ГЄГЁ):  %.6f Г±.\n", time_bfs_l);
+            printf("DFS (ГЊГ ГІГ°ГЁГ¶Г ): %.6f Г±.\n", time_dfs_m);
+            printf("DFS (Г‘ГЇГЁГ±ГЄГЁ):  %.6f Г±.\n", time_dfs_l);
 
             free(dist_bfs_m); free(dist_bfs_l);
             free(dist_dfs_m); free(dist_dfs_l);
@@ -335,7 +335,5 @@ int main() {
             zapusk_benchmark();
         }
     }
-
-    printf("\nПрограмма завершена.\n");
     return 0;
 }
